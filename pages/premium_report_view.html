@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Premium Blood Test Analysis Report - BloodTest AI Analyzer</title>
+    <meta name="description" content="Comprehensive AI-powered blood test analysis report with detailed health insights and actionable recommendations." />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fbloodtest3849back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.5"></script>
+</head>
+<body class="bg-background text-text-primary">
+    <!-- Header Navigation -->
+    <header class="bg-surface shadow-soft border-b border-secondary-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="landing_page.html" class="flex items-center space-x-2">
+                        <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        <span class="text-xl font-semibold text-text-primary">BloodTest AI</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="landing_page.html" class="text-text-secondary hover:text-primary transition-colors">Home</a>
+                    <a href="test_upload_dashboard.html" class="text-text-secondary hover:text-primary transition-colors">Upload Test</a>
+                    <a href="#" class="text-text-secondary hover:text-primary transition-colors">How It Works</a>
+                    <a href="#" class="text-text-secondary hover:text-primary transition-colors">Pricing</a>
+                </nav>
+
+                <!-- Report Actions -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <button class="btn-secondary flex items-center" id="download-btn">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-4-4m4 4l4-4m3 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        Download PDF
+                    </button>
+                    <button class="btn-primary flex items-center" id="share-btn">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"/>
+                        </svg>
+                        Share Report
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden p-2 rounded-md text-text-secondary hover:text-primary hover:bg-secondary-100 transition-colors" id="mobile-menu-btn">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 bg-surface border-t border-secondary-200">
+                <a href="landing_page.html" class="block px-3 py-2 text-text-secondary hover:text-primary transition-colors">Home</a>
+                <a href="test_upload_dashboard.html" class="block px-3 py-2 text-text-secondary hover:text-primary transition-colors">Upload Test</a>
+                <a href="#" class="block px-3 py-2 text-text-secondary hover:text-primary transition-colors">How It Works</a>
+                <a href="#" class="block px-3 py-2 text-text-secondary hover:text-primary transition-colors">Pricing</a>
+                <div class="border-t border-secondary-200 pt-4 pb-3">
+                    <div class="flex flex-col space-y-2 px-3">
+                        <button class="btn-secondary flex items-center justify-center" id="mobile-download-btn">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-4-4m4 4l4-4m3 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            Download PDF
+                        </button>
+                        <button class="btn-primary flex items-center justify-center" id="mobile-share-btn">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"/>
+                            </svg>
+                            Share Report
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb Navigation -->
+    <section class="bg-surface border-b border-secondary-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <nav class="flex items-center space-x-2 text-sm">
+                <a href="test_upload_dashboard.html" class="text-text-secondary hover:text-primary transition-colors">Dashboard</a>
+                <svg class="w-4 h-4 text-secondary-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <a href="#" class="text-text-secondary hover:text-primary transition-colors">Reports</a>
+                <svg class="w-4 h-4 text-secondary-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span class="text-text-primary font-medium">15/01/2025</span>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="lg:grid lg:grid-cols-4 lg:gap-8">
+            <!-- Report Navigation Sidebar (Desktop) -->
+            <div class="hidden lg:block lg:col-span-1">
+                <div class="card p-6 sticky top-24">
+                    <h3 class="font-semibold text-text-primary mb-4">Report Sections</h3>
+                    <nav class="space-y-2">
+                        <a href="#executive-summary" class="block px-3 py-2 text-sm text-text-secondary hover:text-primary hover:bg-primary-50 rounded-md transition-colors">Executive Summary</a>
+                        <a href="#parameter-analysis" class="block px-3 py-2 text-sm text-text-secondary hover:text-primary hover:bg-primary-50 rounded-md transition-colors">Parameter Analysis</a>
+                        <a href="#health-recommendations" class="block px-3 py-2 text-sm text-text-secondary hover:text-primary hover:bg-primary-50 rounded-md transition-colors">Health Recommendations</a>
+                        <a href="#trend-insights" class="block px-3 py-2 text-sm text-text-secondary hover:text-primary hover:bg-primary-50 rounded-md transition-colors">Trend Insights</a>
+                        <a href="#risk-assessment" class="block px-3 py-2 text-sm text-text-secondary hover:text-primary hover:bg-primary-50 rounded-md transition-colors">Risk Assessment</a>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Report Content -->
+            <div class="lg:col-span-3">
+                <!-- Report Header -->
+                <div class="card p-6 mb-8">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h1 class="text-fluid-2xl font-bold text-text-primary mb-2">Blood Test Analysis Report</h1>
+                            <p class="text-text-secondary">Generated on 15 January 2025 at 14:30</p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div class="w-3 h-3 bg-success rounded-full"></div>
+                            <span class="text-sm font-medium text-success">Complete Analysis</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Patient Info -->
+                    <div class="grid md:grid-cols-2 gap-6 p-4 bg-secondary-50 rounded-lg">
+                        <div>
+                            <h4 class="font-semibold text-text-primary mb-2">Test Information</h4>
+                            <div class="space-y-1 text-sm">
+                                <p><span class="text-text-secondary">Test Date:</span> <span class="font-medium">12 January 2025</span></p>
+                                <p><span class="text-text-secondary">Lab:</span> <span class="font-medium">Central Medical Laboratory</span></p>
+                                <p><span class="text-text-secondary">Test Type:</span> <span class="font-medium">Complete Blood Count + Metabolic Panel</span></p>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-text-primary mb-2">Analysis Details</h4>
+                            <div class="space-y-1 text-sm">
+                                <p><span class="text-text-secondary">Parameters Analyzed:</span> <span class="font-medium">24 markers</span></p>
+                                <p><span class="text-text-secondary">AI Confidence:</span> <span class="font-medium text-success">98.5%</span></p>
+                                <p><span class="text-text-secondary">Report ID:</span> <span class="font-medium font-data">#BTA-2025-0115</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Executive Summary -->
+                <section id="executive-summary" class="card p-6 mb-8">
+                    <h2 class="text-fluid-xl font-bold text-text-primary mb-6 flex items-center">
+                        <svg class="w-6 h-6 text-primary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        Executive Summary
+                    </h2>
+                    
+                    <div class="grid md:grid-cols-3 gap-6 mb-6">
+                        <div class="text-center p-4 bg-success-50 rounded-lg">
+                            <div class="text-2xl font-bold text-success mb-2">18</div>
+                            <div class="text-sm text-success-600">Normal Range</div>
+                        </div>
+                        <div class="text-center p-4 bg-warning-50 rounded-lg">
+                            <div class="text-2xl font-bold text-warning mb-2">4</div>
+                            <div class="text-sm text-warning-600">Attention Needed</div>
+                        </div>
+                        <div class="text-center p-4 bg-error-50 rounded-lg">
+                            <div class="text-2xl font-bold text-error mb-2">2</div>
+                            <div class="text-sm text-error-600">Out of Range</div>
+                        </div>
+                    </div>
+
+                    <div class="prose max-w-none">
+                        <p class="text-text-secondary mb-4">
+                            Your blood test results show a generally healthy profile with most parameters within normal ranges. 
+                            However, there are several areas that require attention and monitoring.
+                        </p>
+                        
+                        <div class="bg-primary-50 border-l-4 border-primary p-4 rounded-r-lg">
+                            <h4 class="font-semibold text-primary mb-2">Key Findings:</h4>
+                            <ul class="space-y-2 text-sm text-primary-700">
+                                <li>• Cholesterol levels are slightly elevated and may benefit from dietary adjustments</li>
+                                <li>• Vitamin D levels are below optimal range, supplementation recommended</li>
+                                <li>• Blood glucose is at the upper normal limit, lifestyle monitoring suggested</li>
+                                <li>• Iron levels are excellent, indicating good nutritional status</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Parameter Analysis -->
+                <section id="parameter-analysis" class="card p-6 mb-8">
+                    <h2 class="text-fluid-xl font-bold text-text-primary mb-6 flex items-center">
+                        <svg class="w-6 h-6 text-primary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                        Detailed Parameter Analysis
+                    </h2>
+
+                    <!-- Blood Count Parameters -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-text-primary mb-4">Complete Blood Count</h3>
+                        <div class="space-y-4">
+                            <!-- Hemoglobin -->
+                            <div class="border border-secondary-200 rounded-lg p-4">
+                                <div class="flex items-center justify-between mb-3">
+                                    <div>
+                                        <h4 class="font-medium text-text-primary">Hemoglobin</h4>
+                                        <p class="text-sm text-text-secondary">Oxygen-carrying protein in red blood cells</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-lg font-semibold text-text-primary">14.2 g/dL</div>
+                                        <div class="flex items-center">
+                                            <div class="w-2 h-2 bg-success rounded-full mr-2"></div>
+                                            <span class="text-sm text-success">Normal</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <div class="flex justify-between text-xs text-text-secondary mb-1">
+                                        <span>Low (12.0)</span>
+                                        <span>Normal Range</span>
+                                        <span>High (16.0)</span>
+                                    </div>
+                                    <div class="w-full bg-secondary-200 rounded-full h-2">
+                                        <div class="bg-success h-2 rounded-full relative" style="width: 70%">
+                                            <div class="absolute right-0 top-0 w-3 h-3 bg-success rounded-full transform -translate-y-0.5"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-text-secondary">
+                                    Your hemoglobin level is within the healthy range, indicating good oxygen transport capacity.
+                                </p>
+                            </div>
+
+                            <!-- White Blood Cells -->
+                            <div class="border border-secondary-200 rounded-lg p-4">
+                                <div class="flex items-center justify-between mb-3">
+                                    <div>
+                                        <h4 class="font-medium text-text-primary">White Blood Cells</h4>
+                                        <p class="text-sm text-text-secondary">Immune system cells that fight infections</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-lg font-semibold text-text-primary">6.8 × 10³/μL</div>
+                                        <div class="flex items-center">
+                                            <div class="w-2 h-2 bg-success rounded-full mr-2"></div>
+                                            <span class="text-sm text-success">Normal</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <div class="flex justify-between text-xs text-text-secondary mb-1">
+                                        <span>Low (4.0)</span>
+                                        <span>Normal Range</span>
+                                        <span>High (11.0)</span>
+                                    </div>
+                                    <div class="w-full bg-secondary-200 rounded-full h-2">
+                                        <div class="bg-success h-2 rounded-full relative" style="width: 55%">
+                                            <div class="absolute right-0 top-0 w-3 h-3 bg-success rounded-full transform -translate-y-0.5"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-text-secondary">
+                                    Normal white blood cell count suggests a healthy immune system with no signs of infection.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Metabolic Panel -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-text-primary mb-4">Metabolic Panel</h3>
+                        <div class="space-y-4">
+                            <!-- Cholesterol -->
+                            <div class="border border-warning-200 rounded-lg p-4 bg-warning-50">
+                                <div class="flex items-center justify-between mb-3">
+                                    <div>
+                                        <h4 class="font-medium text-text-primary">Total Cholesterol</h4>
+                                        <p class="text-sm text-text-secondary">Fat-like substance important for cell function</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-lg font-semibold text-text-primary">245 mg/dL</div>
+                                        <div class="flex items-center">
+                                            <div class="w-2 h-2 bg-warning rounded-full mr-2"></div>
+                                            <span class="text-sm text-warning">Elevated</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <div class="flex justify-between text-xs text-text-secondary mb-1">
+                                        <span>Optimal (&lt;200)</span>
+                                        <span>Borderline (200-239)</span>
+                                        <span>High (&gt;240)</span>
+                                    </div>
+                                    <div class="w-full bg-secondary-200 rounded-full h-2">
+                                        <div class="bg-warning h-2 rounded-full relative" style="width: 85%">
+                                            <div class="absolute right-0 top-0 w-3 h-3 bg-warning rounded-full transform -translate-y-0.5"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-warning-700">
+                                    <strong>Attention needed:</strong> Your cholesterol is slightly elevated. Consider dietary changes and regular exercise.
+                                </p>
+                            </div>
+
+                            <!-- Glucose -->
+                            <div class="border border-warning-200 rounded-lg p-4 bg-warning-50">
+                                <div class="flex items-center justify-between mb-3">
+                                    <div>
+                                        <h4 class="font-medium text-text-primary">Fasting Glucose</h4>
+                                        <p class="text-sm text-text-secondary">Blood sugar level after fasting</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-lg font-semibold text-text-primary">98 mg/dL</div>
+                                        <div class="flex items-center">
+                                            <div class="w-2 h-2 bg-warning rounded-full mr-2"></div>
+                                            <span class="text-sm text-warning">Upper Normal</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <div class="flex justify-between text-xs text-text-secondary mb-1">
+                                        <span>Normal (&lt;100)</span>
+                                        <span>Prediabetes (100-125)</span>
+                                        <span>Diabetes (&gt;126)</span>
+                                    </div>
+                                    <div class="w-full bg-secondary-200 rounded-full h-2">
+                                        <div class="bg-warning h-2 rounded-full relative" style="width: 78%">
+                                            <div class="absolute right-0 top-0 w-3 h-3 bg-warning rounded-full transform -translate-y-0.5"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-warning-700">
+                                    <strong>Monitor closely:</strong> Glucose is at upper normal limit. Consider lifestyle modifications.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Vitamins & Minerals -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-text-primary mb-4">Vitamins & Minerals</h3>
+                        <div class="space-y-4">
+                            <!-- Vitamin D -->
+                            <div class="border border-error-200 rounded-lg p-4 bg-error-50">
+                                <div class="flex items-center justify-between mb-3">
+                                    <div>
+                                        <h4 class="font-medium text-text-primary">Vitamin D (25-OH)</h4>
+                                        <p class="text-sm text-text-secondary">Essential for bone health and immune function</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-lg font-semibold text-text-primary">18 ng/mL</div>
+                                        <div class="flex items-center">
+                                            <div class="w-2 h-2 bg-error rounded-full mr-2"></div>
+                                            <span class="text-sm text-error">Deficient</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <div class="flex justify-between text-xs text-text-secondary mb-1">
+                                        <span>Deficient (&lt;20)</span>
+                                        <span>Insufficient (20-29)</span>
+                                        <span>Sufficient (&gt;30)</span>
+                                    </div>
+                                    <div class="w-full bg-secondary-200 rounded-full h-2">
+                                        <div class="bg-error h-2 rounded-full relative" style="width: 36%">
+                                            <div class="absolute right-0 top-0 w-3 h-3 bg-error rounded-full transform -translate-y-0.5"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-error-700">
+                                    <strong>Action required:</strong> Vitamin D deficiency detected. Supplementation and sun exposure recommended.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Health Recommendations -->
+                <section id="health-recommendations" class="card p-6 mb-8">
+                    <h2 class="text-fluid-xl font-bold text-text-primary mb-6 flex items-center">
+                        <svg class="w-6 h-6 text-primary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                        </svg>
+                        Health Recommendations
+                    </h2>
+
+                    <div class="space-y-6">
+                        <!-- High Priority -->
+                        <div class="border-l-4 border-error bg-error-50 p-4 rounded-r-lg">
+                            <h3 class="font-semibold text-error mb-3 flex items-center">
+                                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                                </svg>
+                                High Priority Actions
+                            </h3>
+                            <ul class="space-y-2 text-sm text-error-700">
+                                <li>• <strong>Vitamin D Supplementation:</strong> Take 2000-4000 IU daily and consult your doctor for optimal dosing</li>
+                                <li>• <strong>Cholesterol Management:</strong> Reduce saturated fats, increase fiber intake, and consider omega-3 supplements</li>
+                            </ul>
+                        </div>
+
+                        <!-- Medium Priority -->
+                        <div class="border-l-4 border-warning bg-warning-50 p-4 rounded-r-lg">
+                            <h3 class="font-semibold text-warning mb-3 flex items-center">
+                                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                                </svg>
+                                Medium Priority Recommendations
+                            </h3>
+                            <ul class="space-y-2 text-sm text-warning-700">
+                                <li>• <strong>Blood Sugar Monitoring:</strong> Check fasting glucose every 3-6 months</li>
+                                <li>• <strong>Physical Activity:</strong> Aim for 150 minutes of moderate exercise weekly</li>
+                                <li>• <strong>Dietary Adjustments:</strong> Increase vegetables, whole grains, and lean proteins</li>
+                            </ul>
+                        </div>
+
+                        <!-- Low Priority -->
+                        <div class="border-l-4 border-success bg-success-50 p-4 rounded-r-lg">
+                            <h3 class="font-semibold text-success mb-3 flex items-center">
+                                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                </svg>
+                                Maintenance & Prevention
+                            </h3>
+                            <ul class="space-y-2 text-sm text-success-700">
+                                <li>• <strong>Continue Current Habits:</strong> Your iron levels and blood count are excellent</li>
+                                <li>• <strong>Regular Monitoring:</strong> Annual blood tests to track progress</li>
+                                <li>• <strong>Hydration:</strong> Maintain adequate water intake (8-10 glasses daily)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Trend Insights -->
+                <section id="trend-insights" class="card p-6 mb-8">
+                    <h2 class="text-fluid-xl font-bold text-text-primary mb-6 flex items-center">
+                        <svg class="w-6 h-6 text-primary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                        Trend Insights
+                    </h2>
+
+                    <div class="bg-secondary-50 p-4 rounded-lg mb-6">
+                        <p class="text-sm text-text-secondary mb-2">
+                            <svg class="w-4 h-4 inline-block mr-2 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                            </svg>
+                            Trend analysis requires multiple test results over time. Upload previous reports for comprehensive tracking.
+                        </p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="border border-secondary-200 rounded-lg p-4">
+                            <h4 class="font-medium text-text-primary mb-3">Cholesterol Trend</h4>
+                            <div class="h-32 bg-secondary-100 rounded-lg flex items-center justify-center">
+                                <div class="text-center text-text-secondary">
+                                    <svg class="w-8 h-8 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/>
+                                    </svg>
+                                    <p class="text-sm">Chart available with historical data</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border border-secondary-200 rounded-lg p-4">
+                            <h4 class="font-medium text-text-primary mb-3">Glucose Trend</h4>
+                            <div class="h-32 bg-secondary-100 rounded-lg flex items-center justify-center">
+                                <div class="text-center text-text-secondary">
+                                    <svg class="w-8 h-8 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/>
+                                    </svg>
+                                    <p class="text-sm">Chart available with historical data</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Risk Assessment -->
+                <section id="risk-assessment" class="card p-6 mb-8">
+                    <h2 class="text-fluid-xl font-bold text-text-primary mb-6 flex items-center">
+                        <svg class="w-6 h-6 text-primary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                        Risk Assessment
+                    </h2>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <!-- Cardiovascular Risk -->
+                        <div class="border border-warning-200 rounded-lg p-4 bg-warning-50">
+                            <div class="flex items-center justify-between mb-3">
+                                <h4 class="font-medium text-text-primary">Cardiovascular Risk</h4>
+                                <span class="px-3 py-1 bg-warning text-warning-800 text-sm font-medium rounded-full">Moderate</span>
+                            </div>
+                            <p class="text-sm text-text-secondary mb-3">
+                                Based on cholesterol levels and glucose readings
+                            </p>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-warning rounded-full mr-2"></div>
+                                    <span>Elevated cholesterol increases risk</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-warning rounded-full mr-2"></div>
+                                    <span>Upper normal glucose requires monitoring</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Diabetes Risk -->
+                        <div class="border border-warning-200 rounded-lg p-4 bg-warning-50">
+                            <div class="flex items-center justify-between mb-3">
+                                <h4 class="font-medium text-text-primary">Diabetes Risk</h4>
+                                <span class="px-3 py-1 bg-warning text-warning-800 text-sm font-medium rounded-full">Low-Moderate</span>
+                            </div>
+                            <p class="text-sm text-text-secondary mb-3">
+                                Glucose at upper normal limit warrants attention
+                            </p>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-success rounded-full mr-2"></div>
+                                    <span>No family history indicated</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-warning rounded-full mr-2"></div>
+                                    <span>Lifestyle modifications recommended</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bone Health Risk -->
+                        <div class="border border-error-200 rounded-lg p-4 bg-error-50">
+                            <div class="flex items-center justify-between mb-3">
+                                <h4 class="font-medium text-text-primary">Bone Health Risk</h4>
+                                <span class="px-3 py-1 bg-error text-error-800 text-sm font-medium rounded-full">High</span>
+                            </div>
+                            <p class="text-sm text-text-secondary mb-3">
+                                Vitamin D deficiency significantly impacts bone health
+                            </p>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-error rounded-full mr-2"></div>
+                                    <span>Vitamin D deficiency detected</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-error rounded-full mr-2"></div>
+                                    <span>Immediate supplementation needed</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Overall Health Score -->
+                        <div class="border border-success-200 rounded-lg p-4 bg-success-50">
+                            <div class="flex items-center justify-between mb-3">
+                                <h4 class="font-medium text-text-primary">Overall Health Score</h4>
+                                <span class="px-3 py-1 bg-success text-success-800 text-sm font-medium rounded-full">Good</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-success mb-2">75/100</div>
+                                <p class="text-sm text-success-700">Above average health profile</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Medical Disclaimer -->
+                <section class="card p-6 bg-warning-50 border-warning-200">
+                    <div class="flex items-start space-x-4">
+                        <svg class="w-8 h-8 text-warning flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                        </svg>
+                        <div>
+                            <h3 class="font-semibold text-warning-800 mb-2">Important Medical Disclaimer</h3>
+                            <p class="text-sm text-warning-700 mb-4">
+                                This AI-generated analysis is for educational purposes only and cannot substitute professional medical advice, diagnosis, or treatment. Always consult with qualified healthcare professionals for medical decisions and before making any changes to your health regimen.
+                            </p>
+                            <div class="space-y-2 text-sm text-warning-700">
+                                <p>• This report should not be used for self-diagnosis or treatment decisions</p>
+                                <p>• Consult your doctor before starting any supplements or medications</p>
+                                <p>• Seek immediate medical attention for any concerning symptoms</p>
+                                <p>• Regular medical check-ups remain essential for optimal health</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 mt-8">
+                    <button class="btn-primary flex items-center justify-center flex-1" id="download-report-btn">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-4-4m4 4l4-4m3 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        Download Full Report (PDF)
+                    </button>
+                    <button class="btn-secondary flex items-center justify-center flex-1" id="email-report-btn">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                        Email Report
+                    </button>
+                    <a href="test_upload_dashboard.html" class="btn-secondary flex items-center justify-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                        </svg>
+                        Upload New Test
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-text-primary text-white py-12 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        <span class="text-xl font-semibold">BloodTest AI</span>
+                    </div>
+                    <p class="text-secondary-300 mb-6 max-w-md">
+                        AI-powered blood test analysis providing quick, affordable, and secure health insights for everyone.
+                    </p>
+                    
+                    <!-- Trust Badges -->
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center space-x-2 text-sm text-secondary-300">
+                            <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>GDPR</span>
+                        </div>
+                        <div class="flex items-center space-x-2 text-sm text-secondary-300">
+                            <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>SSL</span>
+                        </div>
+                        <div class="flex items-center space-x-2 text-sm text-secondary-300">
+                            <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span>Encrypted</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-secondary-300">
+                        <li><a href="landing_page.html" class="hover:text-white transition-colors">Home</a></li>
+                        <li><a href="test_upload_dashboard.html" class="hover:text-white transition-colors">Upload Test</a></li>
+                        <li><a href="free_preview_report.html" class="hover:text-white transition-colors">Sample Report</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">How It Works</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal -->
+                <div>
+                    <h4 class="font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-secondary-300">
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Medical Disclaimer</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">GDPR Compliance</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-secondary-600 mt-8 pt-8 text-center text-secondary-300">
+                <p>&copy; 2025 BloodTest AI Analyzer. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth Scrolling for Navigation Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Download Report Functionality
+        document.getElementById('download-btn').addEventListener('click', function() {
+            // Simulate PDF download
+            const link = document.createElement('a');
+            link.href = '#';
+            link.download = 'BloodTest_Analysis_Report_2025-01-15.pdf';
+            link.click();
+            
+            // Show success message
+            showNotification('Report download started', 'success');
+        });
+
+        document.getElementById('download-report-btn').addEventListener('click', function() {
+            // Simulate PDF download
+            const link = document.createElement('a');
+            link.href = '#';
+            link.download = 'BloodTest_Analysis_Report_2025-01-15.pdf';
+            link.click();
+            
+            // Show success message
+            showNotification('Full report download started', 'success');
+        });
+
+        // Email Report Functionality
+        document.getElementById('email-report-btn').addEventListener('click', function() {
+            // Simulate email sending
+            showNotification('Report sent to your email address', 'success');
+        });
+
+        // Share Report Functionality
+        document.getElementById('share-btn').addEventListener('click', function() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Blood Test Analysis Report',
+                    text: 'Check out my blood test analysis report from BloodTest AI',
+                    url: window.location.href
+                });
+            } else {
+                // Fallback - copy to clipboard
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    showNotification('Report link copied to clipboard', 'success');
+                });
+            }
+        });
+
+        // Mobile share functionality
+        document.getElementById('mobile-share-btn').addEventListener('click', function() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Blood Test Analysis Report',
+                    text: 'Check out my blood test analysis report from BloodTest AI',
+                    url: window.location.href
+                });
+            } else {
+                // Fallback - copy to clipboard
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    showNotification('Report link copied to clipboard', 'success');
+                });
+            }
+        });
+
+        // Mobile download functionality
+        document.getElementById('mobile-download-btn').addEventListener('click', function() {
+            // Simulate PDF download
+            const link = document.createElement('a');
+            link.href = '#';
+            link.download = 'BloodTest_Analysis_Report_2025-01-15.pdf';
+            link.click();
+            
+            // Show success message
+            showNotification('Report download started', 'success');
+        });
+
+        // Notification System
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg transition-all duration-300 transform translate-x-full`;
+            
+            if (type === 'success') {
+                notification.className += ' bg-success text-white';
+            } else if (type === 'error') {
+                notification.className += ' bg-error text-white';
+            } else {
+                notification.className += ' bg-primary text-white';
+            }
+            
+            notification.innerHTML = `
+                <div class="flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.classList.remove('translate-x-full');
+            }, 100);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.classList.add('translate-x-full');
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Print Optimization
+        window.addEventListener('beforeprint', function() {
+            // Hide navigation elements for print
+            document.querySelector('header').style.display = 'none';
+            document.querySelector('footer').style.display = 'none';
+            document.querySelector('.lg\\:col-span-1').style.display = 'none';
+        });
+
+        window.addEventListener('afterprint', function() {
+            // Restore navigation elements after print
+            document.querySelector('header').style.display = 'block';
+            document.querySelector('footer').style.display = 'block';
+            document.querySelector('.lg\\:col-span-1').style.display = 'block';
+        });
+    </script>
+</body>
+</html>

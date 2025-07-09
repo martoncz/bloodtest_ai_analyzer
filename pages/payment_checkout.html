@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment Checkout - BloodTest AI Analyzer</title>
+    <meta name="description" content="Secure checkout for your premium blood test analysis report. Complete your €4.99 purchase with confidence." />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fbloodtest3849back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.5"></script>
+</head>
+<body class="bg-background text-text-primary">
+    <!-- Header Navigation -->
+    <header class="bg-surface shadow-soft border-b border-secondary-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="landing_page.html" class="flex items-center space-x-2">
+                        <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        <span class="text-xl font-semibold text-text-primary">BloodTest AI</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="landing_page.html" class="text-text-secondary hover:text-primary transition-colors">Home</a>
+                    <a href="test_upload_dashboard.html" class="text-text-secondary hover:text-primary transition-colors">Upload Test</a>
+                    <a href="#" class="text-text-secondary hover:text-primary transition-colors">How It Works</a>
+                    <a href="#" class="text-text-secondary hover:text-primary transition-colors">Pricing</a>
+                </nav>
+
+                <!-- Auth Buttons -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <button class="text-text-secondary hover:text-primary transition-colors">Login</button>
+                    <button class="btn-primary">Sign Up</button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden p-2 rounded-md text-text-secondary hover:text-primary hover:bg-secondary-100 transition-colors" id="mobile-menu-btn">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 bg-surface border-t border-secondary-200">
+                <a href="landing_page.html" class="block px-3 py-2 text-text-secondary hover:text-primary transition-colors">Home</a>
+                <a href="test_upload_dashboard.html" class="block px-3 py-2 text-text-secondary hover:text-primary transition-colors">Upload Test</a>
+                <a href="#" class="block px-3 py-2 text-text-secondary hover:text-primary transition-colors">How It Works</a>
+                <a href="#" class="block px-3 py-2 text-text-secondary hover:text-primary transition-colors">Pricing</a>
+                <div class="border-t border-secondary-200 pt-4 pb-3">
+                    <div class="flex items-center px-3 space-x-3">
+                        <button class="text-text-secondary hover:text-primary transition-colors">Login</button>
+                        <button class="btn-primary">Sign Up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb Navigation -->
+    <section class="bg-secondary-50 border-b border-secondary-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <nav class="flex items-center space-x-2 text-sm">
+                <a href="test_upload_dashboard.html" class="text-text-secondary hover:text-primary transition-colors">Dashboard</a>
+                <svg class="w-4 h-4 text-secondary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+                <a href="analysis_processing.html" class="text-text-secondary hover:text-primary transition-colors">Analysis</a>
+                <svg class="w-4 h-4 text-secondary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+                <span class="text-primary font-medium">Payment</span>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid lg:grid-cols-3 gap-8">
+            <!-- Payment Form -->
+            <div class="lg:col-span-2">
+                <div class="card p-6 lg:p-8">
+                    <div class="mb-8">
+                        <h1 class="text-fluid-2xl font-bold text-text-primary mb-2">Secure Checkout</h1>
+                        <p class="text-text-secondary">Complete your purchase to access your full blood test analysis report</p>
+                    </div>
+
+                    <!-- Security Indicators -->
+                    <div class="flex items-center justify-center space-x-6 mb-8 p-4 bg-success-50 rounded-lg border border-success-200">
+                        <div class="flex items-center space-x-2">
+                            <svg class="w-5 h-5 text-success" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-sm font-medium text-success-700">SSL Encrypted</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <svg class="w-5 h-5 text-success" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-sm font-medium text-success-700">PCI Compliant</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <svg class="w-5 h-5 text-success" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span class="text-sm font-medium text-success-700">GDPR Protected</span>
+                        </div>
+                    </div>
+
+                    <!-- Payment Methods -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-text-primary mb-4">Payment Method</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <label class="payment-method-card cursor-pointer">
+                                <input type="radio" name="payment-method" value="card" class="sr-only" checked />
+                                <div class="card p-4 border-2 border-primary bg-primary-50 transition-all">
+                                    <div class="flex items-center justify-center space-x-2">
+                                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                                        </svg>
+                                        <span class="font-medium text-primary">Credit Card</span>
+                                    </div>
+                                </div>
+                            </label>
+                            
+                            <label class="payment-method-card cursor-pointer">
+                                <input type="radio" name="payment-method" value="paypal" class="sr-only" />
+                                <div class="card p-4 border-2 border-secondary-200 hover:border-primary hover:bg-primary-50 transition-all">
+                                    <div class="flex items-center justify-center space-x-2">
+                                        <svg class="w-6 h-6 text-secondary" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c-.013.076-.026.175-.041.26-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81.394.45.67.96.824 1.507z"/>
+                                        </svg>
+                                        <span class="font-medium text-secondary">PayPal</span>
+                                    </div>
+                                </div>
+                            </label>
+                            
+                            <label class="payment-method-card cursor-pointer">
+                                <input type="radio" name="payment-method" value="sepa" class="sr-only" />
+                                <div class="card p-4 border-2 border-secondary-200 hover:border-primary hover:bg-primary-50 transition-all">
+                                    <div class="flex items-center justify-center space-x-2">
+                                        <svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                                        </svg>
+                                        <span class="font-medium text-secondary">SEPA</span>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Credit Card Form -->
+                    <div id="card-form" class="payment-form">
+                        <form class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="card-number" class="block text-sm font-medium text-text-primary mb-2">Card Number</label>
+                                    <input type="text" id="card-number" name="card-number" placeholder="1234 5678 9012 3456" class="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors" />
+                                </div>
+                                <div>
+                                    <label for="card-name" class="block text-sm font-medium text-text-primary mb-2">Cardholder Name</label>
+                                    <input type="text" id="card-name" name="card-name" placeholder="John Doe" class="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors" />
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-2 gap-6">
+                                <div>
+                                    <label for="expiry" class="block text-sm font-medium text-text-primary mb-2">Expiry Date</label>
+                                    <input type="text" id="expiry" name="expiry" placeholder="MM/YY" class="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors" />
+                                </div>
+                                <div>
+                                    <label for="cvv" class="block text-sm font-medium text-text-primary mb-2">CVV</label>
+                                    <input type="text" id="cvv" name="cvv" placeholder="123" class="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors" />
+                                </div>
+                            </div>
+
+                            <!-- Billing Address -->
+                            <div class="border-t border-secondary-200 pt-6">
+                                <h4 class="text-lg font-semibold text-text-primary mb-4">Billing Address</h4>
+                                <div class="space-y-4">
+                                    <div>
+                                        <label for="address" class="block text-sm font-medium text-text-primary mb-2">Street Address</label>
+                                        <input type="text" id="address" name="address" placeholder="123 Main Street" class="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors" />
+                                    </div>
+                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                        <div>
+                                            <label for="city" class="block text-sm font-medium text-text-primary mb-2">City</label>
+                                            <input type="text" id="city" name="city" placeholder="Berlin" class="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors" />
+                                        </div>
+                                        <div>
+                                            <label for="postal" class="block text-sm font-medium text-text-primary mb-2">Postal Code</label>
+                                            <input type="text" id="postal" name="postal" placeholder="10115" class="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors" />
+                                        </div>
+                                        <div>
+                                            <label for="country" class="block text-sm font-medium text-text-primary mb-2">Country</label>
+                                            <select id="country" name="country" class="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors">
+                                                <option value="DE">Germany</option>
+                                                <option value="FR">France</option>
+                                                <option value="IT">Italy</option>
+                                                <option value="ES">Spain</option>
+                                                <option value="NL">Netherlands</option>
+                                                <option value="BE">Belgium</option>
+                                                <option value="AT">Austria</option>
+                                                <option value="CH">Switzerland</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- PayPal Form -->
+                    <div id="paypal-form" class="payment-form hidden">
+                        <div class="text-center py-8">
+                            <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c-.013.076-.026.175-.041.26-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81.394.45.67.96.824 1.507z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-semibold text-text-primary mb-2">Pay with PayPal</h3>
+                            <p class="text-text-secondary mb-6">You'll be redirected to PayPal to complete your payment securely.</p>
+                            <div class="w-full h-12 bg-secondary-100 rounded-lg flex items-center justify-center">
+                                <span class="text-secondary-500">PayPal Button Placeholder</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SEPA Form -->
+                    <div id="sepa-form" class="payment-form hidden">
+                        <form class="space-y-6">
+                            <div>
+                                <label for="iban" class="block text-sm font-medium text-text-primary mb-2">IBAN</label>
+                                <input type="text" id="iban" name="iban" placeholder="DE89 3704 0044 0532 0130 00" class="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors" />
+                            </div>
+                            <div>
+                                <label for="account-holder" class="block text-sm font-medium text-text-primary mb-2">Account Holder Name</label>
+                                <input type="text" id="account-holder" name="account-holder" placeholder="John Doe" class="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors" />
+                            </div>
+                            <div class="p-4 bg-warning-50 rounded-lg border border-warning-200">
+                                <p class="text-sm text-warning-700">
+                                    <svg class="w-4 h-4 inline-block mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                                    </svg>
+                                    SEPA payments may take 1-3 business days to process. Your report will be available once payment is confirmed.
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="lg:col-span-1">
+                <div class="card p-6 sticky top-24">
+                    <h2 class="text-xl font-semibold text-text-primary mb-6">Order Summary</h2>
+                    
+                    <!-- Product Details -->
+                    <div class="space-y-4 mb-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-semibold text-text-primary">Full Blood Test Analysis Report</h3>
+                                <p class="text-sm text-text-secondary mt-1">Complete AI-powered analysis with detailed insights and recommendations</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- What's Included -->
+                    <div class="mb-6">
+                        <h4 class="font-semibold text-text-primary mb-3">What's Included:</h4>
+                        <ul class="space-y-2 text-sm text-text-secondary">
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 text-success mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                Complete AI analysis of all blood markers
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 text-success mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                Detailed health insights & explanations
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 text-success mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                Personalized recommendations
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 text-success mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                Downloadable PDF report
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 text-success mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                Email delivery
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Pricing Breakdown -->
+                    <div class="border-t border-secondary-200 pt-4 space-y-3">
+                        <div class="flex justify-between">
+                            <span class="text-text-secondary">Subtotal</span>
+                            <span class="text-text-primary">€4,17</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-text-secondary">VAT (19%)</span>
+                            <span class="text-text-primary">€0,82</span>
+                        </div>
+                        <div class="border-t border-secondary-200 pt-3">
+                            <div class="flex justify-between">
+                                <span class="text-lg font-semibold text-text-primary">Total</span>
+                                <span class="text-lg font-semibold text-primary">€4,99</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Complete Purchase Button -->
+                    <button id="complete-purchase-btn" class="btn-primary w-full mt-6 py-4 text-lg hover-lift">
+                        <span id="btn-text">Complete Purchase</span>
+                        <svg id="btn-loading" class="w-5 h-5 ml-2 animate-spin hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                        </svg>
+                    </button>
+
+                    <!-- Money-back Guarantee -->
+                    <div class="mt-6 p-4 bg-success-50 rounded-lg border border-success-200">
+                        <div class="flex items-center space-x-2 mb-2">
+                            <svg class="w-5 h-5 text-success" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="font-semibold text-success-700">30-Day Money-Back Guarantee</span>
+                        </div>
+                        <p class="text-sm text-success-700">Not satisfied with your report? Get a full refund within 30 days.</p>
+                    </div>
+
+                    <!-- Customer Support -->
+                    <div class="mt-4 text-center">
+                        <p class="text-sm text-text-secondary">Need help?</p>
+                        <a href="#" class="text-sm text-primary hover:underline">Contact Customer Support</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Medical Disclaimer -->
+    <section class="py-8 bg-warning-50 border-t border-warning-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="flex items-center justify-center mb-3">
+                    <svg class="w-6 h-6 text-warning mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                    </svg>
+                    <h3 class="text-lg font-semibold text-warning-800">Medical Disclaimer</h3>
+                </div>
+                <p class="text-sm text-warning-700 max-w-2xl mx-auto">
+                    This AI analysis is for educational purposes only and cannot substitute professional medical advice. 
+                    Always consult qualified healthcare professionals for medical decisions.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-text-primary text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        <span class="text-xl font-semibold">BloodTest AI</span>
+                    </div>
+                    <p class="text-secondary-300 mb-6 max-w-md">
+                        AI-powered blood test analysis providing quick, affordable, and secure health insights for everyone.
+                    </p>
+                    
+                    <!-- Trust Badges -->
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center space-x-2 text-sm text-secondary-300">
+                            <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>GDPR</span>
+                        </div>
+                        <div class="flex items-center space-x-2 text-sm text-secondary-300">
+                            <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>SSL</span>
+                        </div>
+                        <div class="flex items-center space-x-2 text-sm text-secondary-300">
+                            <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span>Encrypted</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-secondary-300">
+                        <li><a href="landing_page.html" class="hover:text-white transition-colors">Home</a></li>
+                        <li><a href="test_upload_dashboard.html" class="hover:text-white transition-colors">Upload Test</a></li>
+                        <li><a href="free_preview_report.html" class="hover:text-white transition-colors">Sample Report</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">How It Works</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal -->
+                <div>
+                    <h4 class="font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-secondary-300">
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Medical Disclaimer</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">GDPR Compliance</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-secondary-600 mt-8 pt-8 text-center text-secondary-300">
+                <p>&copy; 2025 BloodTest AI Analyzer. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Payment Method Selection
+        const paymentMethods = document.querySelectorAll('input[name="payment-method"]');
+        const paymentForms = document.querySelectorAll('.payment-form');
+
+        paymentMethods.forEach(method => {
+            method.addEventListener('change', function() {
+                // Update visual selection
+                document.querySelectorAll('.payment-method-card .card').forEach(card => {
+                    card.classList.remove('border-primary', 'bg-primary-50');
+                    card.classList.add('border-secondary-200');
+                });
+                
+                const selectedCard = this.closest('.payment-method-card').querySelector('.card');
+                selectedCard.classList.add('border-primary', 'bg-primary-50');
+                selectedCard.classList.remove('border-secondary-200');
+
+                // Show/hide payment forms
+                paymentForms.forEach(form => form.classList.add('hidden'));
+                
+                const selectedForm = document.getElementById(this.value + '-form');
+                if (selectedForm) {
+                    selectedForm.classList.remove('hidden');
+                }
+            });
+        });
+
+        // Complete Purchase Button
+        document.getElementById('complete-purchase-btn').addEventListener('click', function() {
+            const btnText = document.getElementById('btn-text');
+            const btnLoading = document.getElementById('btn-loading');
+            
+            // Show loading state
+            btnText.textContent = 'Processing...';
+            btnLoading.classList.remove('hidden');
+            this.disabled = true;
+            
+            // Simulate payment processing
+            setTimeout(() => {
+                // Redirect to premium report view
+                window.location.href = 'premium_report_view.html';
+            }, 2000);
+        });
+
+        // Form Validation
+        const inputs = document.querySelectorAll('input[required]');
+        inputs.forEach(input => {
+            input.addEventListener('blur', function() {
+                if (this.value.trim() === '') {
+                    this.classList.add('border-error');
+                } else {
+                    this.classList.remove('border-error');
+                    this.classList.add('border-success');
+                }
+            });
+        });
+
+        // Card Number Formatting
+        const cardNumberInput = document.getElementById('card-number');
+        if (cardNumberInput) {
+            cardNumberInput.addEventListener('input', function() {
+                let value = this.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+                let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+                this.value = formattedValue;
+            });
+        }
+
+        // Expiry Date Formatting
+        const expiryInput = document.getElementById('expiry');
+        if (expiryInput) {
+            expiryInput.addEventListener('input', function() {
+                let value = this.value.replace(/\D/g, '');
+                if (value.length >= 2) {
+                    value = value.substring(0, 2) + '/' + value.substring(2, 4);
+                }
+                this.value = value;
+            });
+        }
+    </script>
+</body>
+</html>

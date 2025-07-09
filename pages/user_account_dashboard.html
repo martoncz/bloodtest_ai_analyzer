@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Account Dashboard - BloodTest AI Analyzer</title>
+    <meta name="description" content="Manage your account, view test history, and track your health insights with BloodTest AI Analyzer dashboard." />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script src="../public/event-safety-fix.js"></script>
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fbloodtest3849back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.5"></script>
+</head>
+<body class="bg-background text-text-primary">
+    <!-- Header Navigation -->
+    <header class="bg-surface shadow-soft border-b border-secondary-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="landing_page.html" class="flex items-center space-x-2">
+                        <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        <span class="text-xl font-semibold text-text-primary">BloodTest AI</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="landing_page.html" class="text-text-secondary hover:text-primary transition-colors">Home</a>
+                    <a href="test_upload_dashboard.html" class="text-text-secondary hover:text-primary transition-colors">Upload Test</a>
+                    <a href="manual_data_entry.html" class="text-text-secondary hover:text-primary transition-colors">Manual Entry</a>
+                    <a href="#" class="text-text-secondary hover:text-primary transition-colors">How It Works</a>
+                    <a href="#" class="text-text-secondary hover:text-primary transition-colors">Pricing</a>
+                </nav>
+
+                <!-- User Menu -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="relative">
+                        <button class="flex items-center space-x-2 text-text-secondary hover:text-primary transition-colors" id="user-menu-btn">
+                            <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
+                                <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                </svg>
+                            </div>
+                            <span class="text-sm">John Smith</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        
+                        <!-- Dropdown Menu -->
+                        <div class="absolute right-0 mt-2 w-48 bg-surface rounded-medical shadow-soft-lg border border-secondary-200 hidden" id="user-dropdown">
+                            <div class="py-1">
+                                <a href="user_account_dashboard.html" class="block px-4 py-2 text-sm text-primary font-medium hover:bg-secondary-50 transition-colors">Account Dashboard</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-text-secondary hover:bg-secondary-50 hover:text-primary transition-colors">My Reports</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-text-secondary hover:bg-secondary-50 hover:text-primary transition-colors">Account Settings</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-text-secondary hover:bg-secondary-50 hover:text-primary transition-colors">Billing</a>
+                                <div class="border-t border-secondary-200"></div>
+                                <a href="#" class="block px-4 py-2 text-sm text-text-secondary hover:bg-secondary-50 hover:text-primary transition-colors">Sign Out</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden p-2 rounded-md text-text-secondary hover:text-primary hover:bg-secondary-100 transition-colors" id="mobile-menu-btn">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 bg-surface border-t border-secondary-200">
+                <a href="landing_page.html" class="block px-3 py-2 text-text-secondary hover:text-primary transition-colors">Home</a>
+                <a href="test_upload_dashboard.html" class="block px-3 py-2 text-text-secondary hover:text-primary transition-colors">Upload Test</a>
+                <a href="manual_data_entry.html" class="block px-3 py-2 text-text-secondary hover:text-primary transition-colors">Manual Entry</a>
+                <a href="#" class="block px-3 py-2 text-text-secondary hover:text-primary transition-colors">How It Works</a>
+                <a href="#" class="block px-3 py-2 text-text-secondary hover:text-primary transition-colors">Pricing</a>
+                <div class="border-t border-secondary-200 pt-4 pb-3">
+                    <div class="flex items-center px-3 space-x-3">
+                        <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
+                            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                            </svg>
+                        </div>
+                        <span class="text-sm text-text-secondary">John Smith</span>
+                    </div>
+                    <div class="mt-3 px-3 space-y-1">
+                        <a href="user_account_dashboard.html" class="block px-3 py-2 text-primary font-medium transition-colors">Account Dashboard</a>
+                        <a href="#" class="block px-3 py-2 text-text-secondary hover:text-primary transition-colors">My Reports</a>
+                        <a href="#" class="block px-3 py-2 text-text-secondary hover:text-primary transition-colors">Settings</a>
+                        <a href="#" class="block px-3 py-2 text-text-secondary hover:text-primary transition-colors">Sign Out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb Navigation -->
+    <section class="bg-surface border-b border-secondary-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <nav class="flex items-center space-x-2 text-sm">
+                <a href="landing_page.html" class="text-text-secondary hover:text-primary transition-colors">Dashboard</a>
+                <svg class="w-4 h-4 text-secondary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+                <span class="text-primary font-medium">Account</span>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid lg:grid-cols-4 gap-8">
+            <!-- Main Dashboard Area -->
+            <div class="lg:col-span-3">
+                <!-- Page Header -->
+                <div class="mb-8">
+                    <h1 class="text-fluid-3xl font-bold text-text-primary mb-4">
+                        Account Dashboard
+                    </h1>
+                    <p class="text-fluid-lg text-text-secondary">
+                        Manage your health data, analysis history, and account settings.
+                    </p>
+                </div>
+
+                <!-- User Profile Summary -->
+                <div class="card p-6 mb-8">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center">
+                                <span class="text-white text-2xl font-bold">JS</span>
+                            </div>
+                            <div>
+                                <h2 class="text-2xl font-bold text-text-primary">John Smith</h2>
+                                <p class="text-text-secondary">john.smith@email.com</p>
+                                <div class="flex items-center space-x-2 mt-2">
+                                    <div class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-primary-100 text-primary">
+                                        <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                        </svg>
+                                        Active User
+                                    </div>
+                                    <span class="text-sm text-text-secondary">Member since: January 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn-secondary" onclick="openProfileSettings()">
+                            <svg class="w-4 h-4 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                            </svg>
+                            Edit Profile
+                        </button>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-3 gap-6 p-4 bg-secondary-50 rounded-lg">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-primary mb-1">5</div>
+                            <div class="text-sm text-text-secondary">Total Tests</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-success mb-1">3</div>
+                            <div class="text-sm text-text-secondary">Completed Reports</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-warning mb-1">2</div>
+                            <div class="text-sm text-text-secondary">Processing</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analysis History -->
+                <div class="card p-6 mb-8">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl font-semibold text-text-primary">Analysis History</h2>
+                        <div class="flex items-center space-x-3">
+                            <!-- Filter Dropdown -->
+                            <select class="p-2 border border-secondary-300 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-primary">
+                                <option value="all">All Tests</option>
+                                <option value="completed">Completed</option>
+                                <option value="processing">Processing</option>
+                                <option value="pending">Pending Payment</option>
+                            </select>
+                            <!-- Date Range Filter -->
+                            <select class="p-2 border border-secondary-300 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-primary">
+                                <option value="all">All Time</option>
+                                <option value="week">Last Week</option>
+                                <option value="month">Last Month</option>
+                                <option value="year">Last Year</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- Test Entry 1 -->
+                        <div class="border border-secondary-200 rounded-lg p-4 hover:bg-secondary-50 transition-colors">
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-semibold text-text-primary">Complete Blood Count + Lipid Panel</h3>
+                                        <p class="text-sm text-text-secondary">Test Date: January 15, 2025 • Analysis ID: BTA-2025-001</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-success-100 text-success-700">
+                                        <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                        </svg>
+                                        Completed
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="text-sm text-text-secondary">
+                                    <span class="font-medium">24 parameters analyzed</span> • Last updated: 2 hours ago
+                                </div>
+                                <div class="flex space-x-2">
+                                    <a href="free_preview_report.html" class="btn-secondary text-sm py-1 px-3">
+                                        View Preview
+                                    </a>
+                                    <a href="premium_report_view.html" class="btn-primary text-sm py-1 px-3">
+                                        Full Report
+                                    </a>
+                                    <button class="text-sm text-text-secondary hover:text-primary transition-colors p-1" onclick="downloadReport('BTA-2025-001')">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Test Entry 2 -->
+                        <div class="border border-secondary-200 rounded-lg p-4 hover:bg-secondary-50 transition-colors">
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-warning-100 rounded-full flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-warning animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-semibold text-text-primary">Metabolic Panel (Manual Entry)</h3>
+                                        <p class="text-sm text-text-secondary">Test Date: January 14, 2025 • Analysis ID: BTA-2025-002</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-warning-100 text-warning-700">
+                                        <svg class="w-3 h-3 mr-1 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                                        </svg>
+                                        Processing
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="text-sm text-text-secondary">
+                                    <span class="font-medium">16 parameters entered</span> • Progress: 85% complete
+                                </div>
+                                <div class="flex space-x-2">
+                                    <a href="analysis_processing.html" class="btn-secondary text-sm py-1 px-3">
+                                        View Status
+                                    </a>
+                                    <button class="text-sm text-text-secondary hover:text-primary transition-colors p-1" onclick="cancelAnalysis('BTA-2025-002')">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Test Entry 3 -->
+                        <div class="border border-secondary-200 rounded-lg p-4 hover:bg-secondary-50 transition-colors">
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-semibold text-text-primary">Comprehensive Health Panel</h3>
+                                        <p class="text-sm text-text-secondary">Test Date: January 10, 2025 • Analysis ID: BTA-2025-003</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-success-100 text-success-700">
+                                        <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                        </svg>
+                                        Completed
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="text-sm text-text-secondary">
+                                    <span class="font-medium">32 parameters analyzed</span> • Last updated: 5 days ago
+                                </div>
+                                <div class="flex space-x-2">
+                                    <a href="free_preview_report.html" class="btn-secondary text-sm py-1 px-3">
+                                        View Preview
+                                    </a>
+                                    <a href="premium_report_view.html" class="btn-primary text-sm py-1 px-3">
+                                        Full Report
+                                    </a>
+                                    <button class="text-sm text-text-secondary hover:text-primary transition-colors p-1" onclick="downloadReport('BTA-2025-003')">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="flex items-center justify-between mt-6 pt-4 border-t border-secondary-200">
+                        <div class="text-sm text-text-secondary">
+                            Showing 1-3 of 5 results
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button class="p-2 text-text-secondary hover:text-primary border border-secondary-300 rounded-lg disabled:opacity-50" disabled>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                                </svg>
+                            </button>
+                            <button class="p-2 text-text-secondary hover:text-primary border border-secondary-300 rounded-lg">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Account Settings -->
+                <div class="card p-6 mb-8">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl font-semibold text-text-primary">Account Settings</h2>
+                        <button class="text-sm text-primary hover:text-primary-700 transition-colors">
+                            View All Settings →
+                        </button>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <!-- Personal Information -->
+                        <div class="p-4 border border-secondary-200 rounded-lg">
+                            <div class="flex items-center justify-between mb-3">
+                                <h3 class="font-semibold text-text-primary">Personal Information</h3>
+                                <button class="text-sm text-primary hover:text-primary-700 transition-colors">
+                                    Edit
+                                </button>
+                            </div>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between">
+                                    <span class="text-text-secondary">Full Name:</span>
+                                    <span class="text-text-primary">John Smith</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-text-secondary">Email:</span>
+                                    <span class="text-text-primary">john.smith@email.com</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-text-secondary">Phone:</span>
+                                    <span class="text-text-primary">+1 (555) 123-4567</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-text-secondary">Age:</span>
+                                    <span class="text-text-primary">35 years</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Notification Preferences -->
+                        <div class="p-4 border border-secondary-200 rounded-lg">
+                            <div class="flex items-center justify-between mb-3">
+                                <h3 class="font-semibold text-text-primary">Notifications</h3>
+                                <button class="text-sm text-primary hover:text-primary-700 transition-colors">
+                                    Manage
+                                </button>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-sm text-text-secondary">Email Notifications</span>
+                                    <button class="w-12 h-6 bg-primary rounded-full relative">
+                                        <div class="w-4 h-4 bg-white rounded-full absolute right-1 top-1 transition-transform"></div>
+                                    </button>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-sm text-text-secondary">SMS Alerts</span>
+                                    <button class="w-12 h-6 bg-secondary-300 rounded-full relative">
+                                        <div class="w-4 h-4 bg-white rounded-full absolute left-1 top-1 transition-transform"></div>
+                                    </button>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-sm text-text-secondary">Report Updates</span>
+                                    <button class="w-12 h-6 bg-primary rounded-full relative">
+                                        <div class="w-4 h-4 bg-white rounded-full absolute right-1 top-1 transition-transform"></div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Privacy Controls -->
+                        <div class="p-4 border border-secondary-200 rounded-lg">
+                            <div class="flex items-center justify-between mb-3">
+                                <h3 class="font-semibold text-text-primary">Privacy & Security</h3>
+                                <button class="text-sm text-primary hover:text-primary-700 transition-colors">
+                                    Settings
+                                </button>
+                            </div>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between">
+                                    <span class="text-text-secondary">Data Retention:</span>
+                                    <span class="text-text-primary">30 days</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-text-secondary">Two-Factor Auth:</span>
+                                    <span class="text-success">Enabled</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-text-secondary">Data Export:</span>
+                                    <button class="text-primary hover:text-primary-700 transition-colors">
+                                        Request
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Subscription Management -->
+                        <div class="p-4 border border-secondary-200 rounded-lg">
+                            <div class="flex items-center justify-between mb-3">
+                                <h3 class="font-semibold text-text-primary">Subscription</h3>
+                                <button class="text-sm text-primary hover:text-primary-700 transition-colors">
+                                    Manage
+                                </button>
+                            </div>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between">
+                                    <span class="text-text-secondary">Plan:</span>
+                                    <span class="text-text-primary">Pay-per-use</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-text-secondary">Reports Purchased:</span>
+                                    <span class="text-text-primary">3 reports</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-text-secondary">Total Spent:</span>
+                                    <span class="text-text-primary">€14.97</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Export -->
+                <div class="card p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl font-semibold text-text-primary">Data Export</h2>
+                        <div class="flex items-center space-x-2 text-sm text-success">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>GDPR Compliant</span>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="font-semibold text-text-primary mb-3">Export Your Data</h3>
+                            <p class="text-text-secondary text-sm mb-4">
+                                Download all your health data, test results, and analysis reports in standardized formats.
+                            </p>
+                            <div class="space-y-3">
+                                <button class="btn-secondary w-full justify-center">
+                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                    </svg>
+                                    Download All Reports (PDF)
+                                </button>
+                                <button class="btn-secondary w-full justify-center">
+                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                    </svg>
+                                    Export Data (CSV)
+                                </button>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-text-primary mb-3">Data Sharing</h3>
+                            <p class="text-text-secondary text-sm mb-4">
+                                Share your health data securely with healthcare providers using our secure sharing links.
+                            </p>
+                            <div class="space-y-3">
+                                <button class="btn-secondary w-full justify-center">
+                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"/>
+                                    </svg>
+                                    Create Sharing Link
+                                </button>
+                                <button class="btn-secondary w-full justify-center">
+                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                    </svg>
+                                    Email to Doctor
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="lg:col-span-1">
+                <div class="sticky top-24 space-y-6">
+                    <!-- Quick Actions -->
+                    <div class="card p-6">
+                        <h3 class="font-semibold text-text-primary mb-4">Quick Actions</h3>
+                        <div class="space-y-3">
+                            <a href="test_upload_dashboard.html" class="btn-primary w-full text-center">
+                                <svg class="w-4 h-4 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                                </svg>
+                                New Test Upload
+                            </a>
+                            <a href="manual_data_entry.html" class="btn-secondary w-full text-center">
+                                <svg class="w-4 h-4 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                </svg>
+                                Manual Entry
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Health Trends -->
+                    <div class="card p-6">
+                        <h3 class="font-semibold text-text-primary mb-4">Health Trends</h3>
+                        <div class="space-y-4">
+                            <div class="p-3 bg-success-50 rounded-lg border border-success-200">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-sm font-medium text-success-700">Cholesterol</span>
+                                    <svg class="w-4 h-4 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                                    </svg>
+                                </div>
+                                <p class="text-xs text-success-600">Improved by 12% from last test</p>
+                            </div>
+                            <div class="p-3 bg-warning-50 rounded-lg border border-warning-200">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-sm font-medium text-warning-700">Vitamin D</span>
+                                    <svg class="w-4 h-4 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"/>
+                                    </svg>
+                                </div>
+                                <p class="text-xs text-warning-600">Needs attention - consider supplementation</p>
+                            </div>
+                            <div class="p-3 bg-primary-50 rounded-lg border border-primary-200">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-sm font-medium text-primary-700">Blood Sugar</span>
+                                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/>
+                                    </svg>
+                                </div>
+                                <p class="text-xs text-primary-600">Stable - within normal range</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment History -->
+                    <div class="card p-6">
+                        <h3 class="font-semibold text-text-primary mb-4">Payment History</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm font-medium text-text-primary">Full Report</p>
+                                    <p class="text-xs text-text-secondary">Jan 15, 2025</p>
+                                </div>
+                                <span class="text-sm font-medium text-text-primary">€4.99</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm font-medium text-text-primary">Full Report</p>
+                                    <p class="text-xs text-text-secondary">Jan 10, 2025</p>
+                                </div>
+                                <span class="text-sm font-medium text-text-primary">€4.99</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm font-medium text-text-primary">Full Report</p>
+                                    <p class="text-xs text-text-secondary">Jan 5, 2025</p>
+                                </div>
+                                <span class="text-sm font-medium text-text-primary">€4.99</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-secondary-200">
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm font-medium text-text-primary">Total Spent</span>
+                                <span class="text-sm font-bold text-primary">€14.97</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Support -->
+                    <div class="card p-6">
+                        <h3 class="font-semibold text-text-primary mb-4">Support</h3>
+                        <div class="space-y-3">
+                            <button class="btn-secondary w-full text-sm">
+                                <svg class="w-4 h-4 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                Help Center
+                            </button>
+                            <button class="btn-secondary w-full text-sm">
+                                <svg class="w-4 h-4 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                </svg>
+                                Contact Support
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-text-primary text-white py-12 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        <span class="text-xl font-semibold">BloodTest AI</span>
+                    </div>
+                    <p class="text-secondary-300 mb-6 max-w-md">
+                        AI-powered blood test analysis providing quick, affordable, and secure health insights for everyone.
+                    </p>
+                    
+                    <!-- Trust Badges -->
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center space-x-2 text-sm text-secondary-300">
+                            <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>GDPR</span>
+                        </div>
+                        <div class="flex items-center space-x-2 text-sm text-secondary-300">
+                            <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>SSL</span>
+                        </div>
+                        <div class="flex items-center space-x-2 text-sm text-secondary-300">
+                            <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span>Encrypted</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-secondary-300">
+                        <li><a href="landing_page.html" class="hover:text-white transition-colors">Home</a></li>
+                        <li><a href="test_upload_dashboard.html" class="hover:text-white transition-colors">Upload Test</a></li>
+                        <li><a href="manual_data_entry.html" class="hover:text-white transition-colors">Manual Entry</a></li>
+                        <li><a href="user_account_dashboard.html" class="hover:text-white transition-colors">Account</a></li>
+                        <li><a href="free_preview_report.html" class="hover:text-white transition-colors">Sample Report</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal -->
+                <div>
+                    <h4 class="font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-secondary-300">
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Medical Disclaimer</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">GDPR Compliance</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-secondary-600 mt-8 pt-8 text-center text-secondary-300">
+                <p>&copy; 2025 BloodTest AI Analyzer. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // User dropdown toggle
+            const userMenuBtn = document.getElementById('user-menu-btn');
+            const userDropdown = document.getElementById('user-dropdown');
+            
+            if (userMenuBtn && userDropdown) {
+                userMenuBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    userDropdown.classList.toggle('hidden');
+                });
+            }
+
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function(e) {
+                if (userDropdown && !userMenuBtn.contains(e.target) && !userDropdown.contains(e.target)) {
+                    userDropdown.classList.add('hidden');
+                }
+                if (mobileMenu && !mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Profile settings
+        function openProfileSettings() {
+            alert('Profile settings would open here. This would typically be a modal or separate page.');
+        }
+
+        // Download report
+        function downloadReport(reportId) {
+            // In a real application, this would trigger a download
+            alert(`Downloading report ${reportId}...`);
+        }
+
+        // Cancel analysis
+        function cancelAnalysis(analysisId) {
+            if (confirm('Are you sure you want to cancel this analysis?')) {
+                alert(`Analysis ${analysisId} cancelled.`);
+                // In a real application, this would make an API call
+            }
+        }
+
+        // Toggle switches
+        document.querySelectorAll('button[class*="w-12 h-6"]').forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                const isActive = this.classList.contains('bg-primary');
+                const slider = this.querySelector('div');
+                
+                if (isActive) {
+                    this.classList.remove('bg-primary');
+                    this.classList.add('bg-secondary-300');
+                    slider.classList.remove('right-1');
+                    slider.classList.add('left-1');
+                } else {
+                    this.classList.remove('bg-secondary-300');
+                    this.classList.add('bg-primary');
+                    slider.classList.remove('left-1');
+                    slider.classList.add('right-1');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

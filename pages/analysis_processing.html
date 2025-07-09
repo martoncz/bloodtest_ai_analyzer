@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Analysis Processing - BloodTest AI Analyzer</title>
+    <meta name="description" content="Your blood test is being analyzed by our AI. Please wait while we generate your comprehensive health report." />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fbloodtest3849back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.5"></script>
+</head>
+<body class="bg-background text-text-primary">
+    <!-- Header Navigation -->
+    <header class="bg-surface shadow-soft border-b border-secondary-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="landing_page.html" class="flex items-center space-x-2">
+                        <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        <span class="text-xl font-semibold text-text-primary">BloodTest AI</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="landing_page.html" class="text-text-secondary hover:text-primary transition-colors">Home</a>
+                    <a href="test_upload_dashboard.html" class="text-text-secondary hover:text-primary transition-colors">Upload Test</a>
+                    <a href="#" class="text-text-secondary hover:text-primary transition-colors">How It Works</a>
+                    <a href="#" class="text-text-secondary hover:text-primary transition-colors">Pricing</a>
+                </nav>
+
+                <!-- User Menu -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
+                            <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <span class="text-sm text-text-secondary">User</span>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden p-2 rounded-md text-text-secondary hover:text-primary hover:bg-secondary-100 transition-colors" id="mobile-menu-btn">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 bg-surface border-t border-secondary-200">
+                <a href="landing_page.html" class="block px-3 py-2 text-text-secondary hover:text-primary transition-colors">Home</a>
+                <a href="test_upload_dashboard.html" class="block px-3 py-2 text-text-secondary hover:text-primary transition-colors">Upload Test</a>
+                <a href="#" class="block px-3 py-2 text-text-secondary hover:text-primary transition-colors">How It Works</a>
+                <a href="#" class="block px-3 py-2 text-text-secondary hover:text-primary transition-colors">Pricing</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb Navigation -->
+    <section class="bg-surface border-b border-secondary-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <nav class="flex items-center space-x-2 text-sm">
+                <a href="test_upload_dashboard.html" class="text-text-secondary hover:text-primary transition-colors">Dashboard</a>
+                <svg class="w-4 h-4 text-secondary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+                <span class="text-text-secondary">Analysis</span>
+                <svg class="w-4 h-4 text-secondary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+                <span class="text-primary font-medium">Processing</span>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Main Processing Content -->
+    <main class="min-h-screen bg-gradient-to-br from-primary-50 to-accent-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Main Processing Area -->
+                <div class="lg:col-span-2">
+                    <!-- Processing Header -->
+                    <div class="text-center mb-8">
+                        <h1 class="text-fluid-2xl font-bold text-text-primary mb-4">
+                            Analyzing Your Blood Test
+                        </h1>
+                        <p class="text-fluid-lg text-text-secondary max-w-2xl mx-auto">
+                            Our AI is carefully analyzing your blood test results. This process typically takes 30-60 seconds.
+                        </p>
+                    </div>
+
+                    <!-- Progress Visualization -->
+                    <div class="card p-8 mb-8">
+                        <!-- Animated Medical Icon -->
+                        <div class="flex justify-center mb-8">
+                            <div class="relative">
+                                <div class="w-24 h-24 bg-primary-100 rounded-full flex items-center justify-center animate-pulse">
+                                    <svg class="w-12 h-12 text-primary animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                                    </svg>
+                                </div>
+                                <!-- Pulse rings -->
+                                <div class="absolute inset-0 rounded-full border-4 border-primary-200 animate-ping"></div>
+                                <div class="absolute inset-2 rounded-full border-2 border-primary-300 animate-ping" style="animation-delay: 0.5s;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Progress Bar -->
+                        <div class="mb-8">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm font-medium text-text-primary">Analysis Progress</span>
+                                <span class="text-sm font-medium text-primary" id="progress-percentage">45%</span>
+                            </div>
+                            <div class="w-full bg-secondary-200 rounded-full h-3">
+                                <div class="bg-gradient-to-r from-primary to-accent h-3 rounded-full transition-all duration-1000 ease-out" id="progress-bar" style="width: 45%"></div>
+                            </div>
+                            <div class="flex justify-between text-xs text-text-secondary mt-2">
+                                <span>Started</span>
+                                <span id="time-remaining">~30 seconds remaining</span>
+                            </div>
+                        </div>
+
+                        <!-- Processing Stages -->
+                        <div class="space-y-4">
+                            <!-- Stage 1: Reading -->
+                            <div class="flex items-center space-x-4 p-4 bg-success-50 rounded-lg border border-success-200" id="stage-1">
+                                <div class="w-8 h-8 bg-success rounded-full flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-success-700">Reading Test Results</h4>
+                                    <p class="text-sm text-success-600">Successfully processed your blood test data</p>
+                                </div>
+                            </div>
+
+                            <!-- Stage 2: Analyzing -->
+                            <div class="flex items-center space-x-4 p-4 bg-primary-50 rounded-lg border border-primary-200" id="stage-2">
+                                <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-4 h-4 text-white animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-primary-700">Analyzing Parameters</h4>
+                                    <p class="text-sm text-primary-600">AI is evaluating your blood markers and ranges</p>
+                                </div>
+                            </div>
+
+                            <!-- Stage 3: Generating -->
+                            <div class="flex items-center space-x-4 p-4 bg-secondary-100 rounded-lg border border-secondary-200" id="stage-3">
+                                <div class="w-8 h-8 bg-secondary-400 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-text-primary">Generating Insights</h4>
+                                    <p class="text-sm text-text-secondary">Creating personalized health insights</p>
+                                </div>
+                            </div>
+
+                            <!-- Stage 4: Preparing -->
+                            <div class="flex items-center space-x-4 p-4 bg-secondary-100 rounded-lg border border-secondary-200" id="stage-4">
+                                <div class="w-8 h-8 bg-secondary-400 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-text-primary">Preparing Report</h4>
+                                    <p class="text-sm text-text-secondary">Finalizing your comprehensive analysis</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cancel Option -->
+                        <div class="mt-8 text-center">
+                            <button class="btn-secondary" onclick="cancelAnalysis()">
+                                <svg class="w-4 h-4 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                </svg>
+                                Cancel Analysis
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Medical Disclaimer -->
+                    <div class="card p-6 bg-warning-50 border border-warning-200">
+                        <div class="flex items-start space-x-3">
+                            <svg class="w-6 h-6 text-warning flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                            </svg>
+                            <div>
+                                <h4 class="font-semibold text-warning-800 mb-2">Important Medical Disclaimer</h4>
+                                <p class="text-sm text-warning-700">
+                                    This AI analysis provides preliminary insights only and cannot substitute professional medical advice. 
+                                    Always consult with qualified healthcare professionals for medical decisions and treatment plans.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Educational Sidebar -->
+                <div class="lg:col-span-1">
+                    <div class="sticky top-24 space-y-6">
+                        <!-- Educational Content -->
+                        <div class="card p-6">
+                            <h3 class="font-semibold text-text-primary mb-4 flex items-center">
+                                <svg class="w-5 h-5 text-accent mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                Did You Know?
+                            </h3>
+                            <div id="educational-content">
+                                <div class="educational-tip active">
+                                    <p class="text-sm text-text-secondary mb-3">
+                                        Blood tests can reveal important information about your overall health, including organ function, 
+                                        nutritional status, and potential health risks.
+                                    </p>
+                                    <div class="flex items-center text-xs text-accent">
+                                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                        </svg>
+                                        Health Tip
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Trust Indicators -->
+                        <div class="card p-6">
+                            <h3 class="font-semibold text-text-primary mb-4">Security & Privacy</h3>
+                            <div class="space-y-3">
+                                <div class="flex items-center space-x-3">
+                                    <svg class="w-5 h-5 text-success" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <span class="text-sm text-text-secondary">GDPR Compliant</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <svg class="w-5 h-5 text-success" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <span class="text-sm text-text-secondary">SSL Encrypted</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <svg class="w-5 h-5 text-success" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    <span class="text-sm text-text-secondary">Medical Grade Privacy</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- What's Next -->
+                        <div class="card p-6">
+                            <h3 class="font-semibold text-text-primary mb-4">What's Next?</h3>
+                            <div class="space-y-3 text-sm text-text-secondary">
+                                <div class="flex items-start space-x-2">
+                                    <span class="w-5 h-5 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <span class="text-xs font-medium text-primary">1</span>
+                                    </span>
+                                    <span>View your free preview with key insights</span>
+                                </div>
+                                <div class="flex items-start space-x-2">
+                                    <span class="w-5 h-5 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <span class="text-xs font-medium text-primary">2</span>
+                                    </span>
+                                    <span>Purchase full report for €4.99</span>
+                                </div>
+                                <div class="flex items-start space-x-2">
+                                    <span class="w-5 h-5 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <span class="text-xs font-medium text-primary">3</span>
+                                    </span>
+                                    <span>Download PDF and consult your doctor</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-text-primary text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        <span class="text-xl font-semibold">BloodTest AI</span>
+                    </div>
+                    <p class="text-secondary-300 mb-6 max-w-md">
+                        AI-powered blood test analysis providing quick, affordable, and secure health insights for everyone.
+                    </p>
+                    
+                    <!-- Trust Badges -->
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center space-x-2 text-sm text-secondary-300">
+                            <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>GDPR</span>
+                        </div>
+                        <div class="flex items-center space-x-2 text-sm text-secondary-300">
+                            <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>SSL</span>
+                        </div>
+                        <div class="flex items-center space-x-2 text-sm text-secondary-300">
+                            <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span>Encrypted</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-secondary-300">
+                        <li><a href="landing_page.html" class="hover:text-white transition-colors">Home</a></li>
+                        <li><a href="test_upload_dashboard.html" class="hover:text-white transition-colors">Upload Test</a></li>
+                        <li><a href="free_preview_report.html" class="hover:text-white transition-colors">Sample Report</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">How It Works</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal -->
+                <div>
+                    <h4 class="font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-secondary-300">
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Medical Disclaimer</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">GDPR Compliance</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-secondary-600 mt-8 pt-8 text-center text-secondary-300">
+                <p>&copy; 2025 BloodTest AI Analyzer. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Processing Animation -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Educational content rotation
+        const educationalTips = [
+            {
+                text: "Blood tests can reveal important information about your overall health, including organ function, nutritional status, and potential health risks.",
+                type: "Health Tip"
+            },
+            {
+                text: "Regular blood testing helps track changes in your health over time and can detect potential issues before symptoms appear.",
+                type: "Prevention Tip"
+            },
+            {
+                text: "Common blood markers include cholesterol levels, blood sugar, liver function, kidney function, and vitamin levels.",
+                type: "Knowledge"
+            },
+            {
+                text: "Fasting before blood tests is often required for accurate glucose and lipid measurements. Follow your doctor's instructions.",
+                type: "Preparation Tip"
+            },
+            {
+                text: "Blood test results should always be interpreted by healthcare professionals who understand your medical history and current health status.",
+                type: "Important Note"
+            }
+        ];
+
+        let currentTipIndex = 0;
+        const educationalContent = document.getElementById('educational-content');
+
+        function rotateEducationalContent() {
+            const tip = educationalTips[currentTipIndex];
+            educationalContent.innerHTML = `
+                <div class="educational-tip active">
+                    <p class="text-sm text-text-secondary mb-3">${tip.text}</p>
+                    <div class="flex items-center text-xs text-accent">
+                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                        </svg>
+                        ${tip.type}
+                    </div>
+                </div>
+            `;
+            currentTipIndex = (currentTipIndex + 1) % educationalTips.length;
+        }
+
+        // Rotate educational content every 8 seconds
+        setInterval(rotateEducationalContent, 8000);
+
+        // Processing simulation
+        let progress = 45;
+        let currentStage = 2;
+        let timeRemaining = 30;
+
+        const progressBar = document.getElementById('progress-bar');
+        const progressPercentage = document.getElementById('progress-percentage');
+        const timeRemainingElement = document.getElementById('time-remaining');
+
+        function updateProgress() {
+            if (progress < 100) {
+                progress += Math.random() * 3 + 1; // Random increment between 1-4
+                timeRemaining = Math.max(0, timeRemaining - 1);
+                
+                if (progress > 100) progress = 100;
+                
+                progressBar.style.width = progress + '%';
+                progressPercentage.textContent = Math.round(progress) + '%';
+                timeRemainingElement.textContent = timeRemaining > 0 ? `~${timeRemaining} seconds remaining` : 'Almost done...';
+                
+                // Update stages based on progress
+                if (progress > 60 && currentStage === 2) {
+                    updateStage(3);
+                    currentStage = 3;
+                } else if (progress > 85 && currentStage === 3) {
+                    updateStage(4);
+                    currentStage = 4;
+                }
+                
+                if (progress >= 100) {
+                    setTimeout(() => {
+                        window.location.href = 'free_preview_report.html';
+                    }, 1000);
+                }
+            }
+        }
+
+        function updateStage(stageNumber) {
+            const stage = document.getElementById(`stage-${stageNumber}`);
+            if (stage) {
+                // Update to active state
+                stage.className = 'flex items-center space-x-4 p-4 bg-primary-50 rounded-lg border border-primary-200';
+                const icon = stage.querySelector('.w-8.h-8');
+                if (icon) {
+                    icon.className = 'w-8 h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0';
+                    icon.innerHTML = `
+                        <svg class="w-4 h-4 text-white animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                        </svg>
+                    `;
+                }
+                
+                // Mark previous stage as complete
+                if (stageNumber > 1) {
+                    const prevStage = document.getElementById(`stage-${stageNumber - 1}`);
+                    if (prevStage) {
+                        prevStage.className = 'flex items-center space-x-4 p-4 bg-success-50 rounded-lg border border-success-200';
+                        const prevIcon = prevStage.querySelector('.w-8.h-8');
+                        if (prevIcon) {
+                            prevIcon.className = 'w-8 h-8 bg-success rounded-full flex items-center justify-center flex-shrink-0';
+                            prevIcon.innerHTML = `
+                                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            `;
+                        }
+                    }
+                }
+            }
+        }
+
+        // Start progress simulation
+        const progressInterval = setInterval(updateProgress, 800);
+
+        // Cancel analysis function
+        function cancelAnalysis() {
+            if (confirm('Are you sure you want to cancel the analysis? You will need to start over.')) {
+                clearInterval(progressInterval);
+                window.location.href = 'test_upload_dashboard.html';
+            }
+        }
+
+        // Prevent page refresh during processing
+        window.addEventListener('beforeunload', function(e) {
+            if (progress < 100) {
+                e.preventDefault();
+                e.returnValue = 'Your analysis is still in progress. Are you sure you want to leave?';
+            }
+        });
+    </script>
+</body>
+</html>
